@@ -3,7 +3,7 @@ import SearchSection from "@/components/sections/searchSection";
 
 export default function ArchivesPage() {
   return (
-    <main className="bg-[linear-gradient(to_right,#80808033_1px,transparent_1px),linear-gradient(to_bottom,#80808033_1px,transparent_1px)] bg-[size:70px_70px]">
+    <>
       <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5">
         <h1 className="text-3xl md:text-6xl font-heading text-foreground text-center">
           Archives
@@ -19,6 +19,6 @@ export default function ArchivesPage() {
         <SearchSection />
       </div>
       <MsgCardGrid />
-    </main>
+    </>
   );
 }
