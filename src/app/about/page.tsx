@@ -11,7 +11,7 @@ export default function AboutPage() {
         <p className="text-lg text-gray-600 leading-relaxed mb-8">
           <em className="text-main">Unsaid</em> is a quiet space for the words we never spoke.
           Messages we couldn&apos;t send. Feelings left unshared. Here, you&apos;re free
-          to write what you've always wanted to say — without judgment, without
+          to write what you&apos;ve always wanted to say — without judgment, without
           expectation.
         </p>
 
