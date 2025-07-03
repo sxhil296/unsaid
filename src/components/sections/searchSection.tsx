@@ -35,7 +35,7 @@ export default function SearchSection() {
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="w-[200px] justify-between rounded-none flex border p-2 items-center"
+            className="w-[200px] justify-between rounded-none flex border p-2 items-center text-nowrap"
           >
             {selected.length > 0
               ? `${selected.length} selected`
