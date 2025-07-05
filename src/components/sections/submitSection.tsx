@@ -95,7 +95,7 @@ export default function SubmitSection() {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center bg-background px-5 mt-32 mb-8">
+    <section className="flex flex-col items-center justify-center bg-background px-5 mt-24 sm:mt-0 mb-12 sm:mb-8 min-h-screen">
       <div className="mx-auto w-full max-w-[600px]">
         <h2 className="text-3xl sm:text-5xl font-heading text-foreground text-center">
           Share Your Unsaid Words

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <>
-      <div className="mx-auto w-full max-w-[800px] pt-24 sm:pt-32 pb-8 sm:pb-16 px-5">
+      <div className="mx-auto w-full max-w-[800px] pt-24 sm:pt-32 pb-8 sm:pb-16 px-5 min-h-screen">
         <h1 className="text-2xl sm:text-4xl font-bold text-foreground mb-6">
           About <span className="text-main italic">Unsaid</span>
         </h1>

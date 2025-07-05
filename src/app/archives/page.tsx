@@ -3,8 +3,8 @@ import SearchSection from "@/components/sections/searchSection";
 
 export default function ArchivesPage() {
   return (
-    <>
-      <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5">
+    <div className="min-h-screen">
+      <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5 ">
         <h1 className="text-3xl md:text-6xl font-heading text-foreground text-center">
           Archives
         </h1>
@@ -19,6 +19,6 @@ export default function ArchivesPage() {
         <SearchSection />
       </div>
       <MsgCardGrid />
-    </>
+    </div>
   );
 }

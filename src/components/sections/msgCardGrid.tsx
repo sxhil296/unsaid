@@ -35,7 +35,7 @@ export const mockMessages = [
 
 export default function MsgCardGrid() {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-4 md:gap-8 max-w-[1200px] mx-auto px-5">
+    <div className="grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-4 md:gap-8 max-w-[1200px] mx-auto px-5 pb-12">
       {mockMessages.map((message, index) => (
         <MsgCard
           key={index}
