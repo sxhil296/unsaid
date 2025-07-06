@@ -7,6 +7,8 @@ import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import { submitMessage } from "@/backendServices";
+import { formatRemainingTime } from "@/lib/utils";
 
 const initialFormState = {
   to: "",
@@ -38,17 +40,27 @@ export default function SubmitSection() {
 
   useEffect(() => {
     const lastSubmitted = localStorage.getItem("lastSubmittedTime");
-    if (lastSubmitted) {
+
+    if (!lastSubmitted) return;
+
+    const interval = setInterval(() => {
       const diff = Date.now() - parseInt(lastSubmitted, 10);
       const hoursPassed = diff / (1000 * 60 * 60);
+
       if (hoursPassed < 4) {
         setCooldown(true);
-        setRemainingHours(Math.ceil(4 - hoursPassed));
+        setRemainingHours(4 - hoursPassed);
+      } else {
+        setCooldown(false);
+        setRemainingHours(0);
+        clearInterval(interval);
       }
-    }
-  }, []);
+    }, 1000);
 
-  const handleSubmit = (e: React.FormEvent) => {
+    return () => clearInterval(interval);
+  }, [submitting]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formState.to.trim() === "") {
       toast.info("Please enter a name.");
@@ -80,12 +92,16 @@ export default function SubmitSection() {
         bgColor: msgBg,
         textColor: msgColor,
       };
-      console.log("Form submitted:", formData);
-      toast.success("Message submitted successfully!");
-      setFormState(initialFormState);
-      setMsgBg("#000");
-      setMsgColor("#fff");
-      localStorage.setItem("lastSubmittedTime", Date.now().toString());
+      const result = await submitMessage(formData);
+      if (result.success) {
+        toast.success("Message submitted successfully!");
+        setFormState(initialFormState);
+        setMsgBg("#000");
+        setMsgColor("#fff");
+        localStorage.setItem("lastSubmittedTime", Date.now().toString());
+      } else {
+        toast.error(result.error);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Failed to submit the message. Please try again.");
@@ -136,9 +152,9 @@ export default function SubmitSection() {
                 className="w-full mt-2 p-2 border-none outline-none ring-none text-lg font-medium"
                 placeholder={
                   cooldown
-                    ? `You can submit your next message after ${remainingHours} hour${
-                        remainingHours !== 1 ? "s" : ""
-                      }`
+                    ? `You can submit your next message after ${formatRemainingTime(
+                        remainingHours || 0
+                      )} `
                     : "Write your message here..."
                 }
                 style={{ backgroundColor: msgBg, color: msgColor }}
@@ -168,11 +184,6 @@ export default function SubmitSection() {
                 checked={checked}
                 onCheckedChange={(val) => {
                   setChecked(!!val);
-                  if (val) {
-                    localStorage.setItem("termsAccepted", "true");
-                  } else {
-                    localStorage.removeItem("termsAccepted");
-                  }
                 }}
               />
               <Label htmlFor="terms" className="text-sm text-gray-600">
@@ -185,7 +196,7 @@ export default function SubmitSection() {
               type="submit"
               disabled={submitting || cooldown}
             >
-              Submit
+              {submitting ? "Submitting..." : "Submit Message"}
             </Button>
           </div>
         </form>
