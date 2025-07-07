@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/layout/header";
 import { Toaster } from "sonner";
 import Footer from "@/components/layout/footer";
+import Script from "next/script";
+
+const GA_MEASUREMENT_ID = "G-8NPDTN5D1G";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,6 +73,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <Header />
         {children}
         <Footer />
