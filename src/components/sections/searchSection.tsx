@@ -5,9 +5,21 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Check, ChevronDown } from "lucide-react";
-export default function SearchSection() {
-  const [selected, setSelected] = useState<string[]>([]);
-  const [tempSelected, setTempSelected] = useState<string[]>([]);
+
+interface SearchSectionProps {
+  searchQuery: string;
+  setSearchQuery: (value: string) => void;
+  selectedColors: string[];
+  setSelectedColors: (colors: string[]) => void;
+}
+
+export default function SearchSection({
+  searchQuery,
+  setSearchQuery,
+  selectedColors,
+  setSelectedColors,
+}: SearchSectionProps) {
+  const [tempSelected, setTempSelected] = useState<string[]>(selectedColors);
   const [open, setOpen] = useState(false);
 
   const toggleColor = (color: string) => {
@@ -17,7 +29,7 @@ export default function SearchSection() {
   };
 
   const handleApply = () => {
-    setSelected(tempSelected);
+    setSelectedColors(tempSelected);
     setOpen(false);
   };
 
@@ -30,6 +42,8 @@ export default function SearchSection() {
         type="text"
         placeholder="Search by name..."
         className="w-full border-none outline-none ring-none"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -37,9 +51,10 @@ export default function SearchSection() {
             type="button"
             className="w-[200px] justify-between rounded-none flex border p-2 items-center text-nowrap"
           >
-            {selected.length > 0
+            {/* {selected.length > 0
               ? `${selected.length} selected`
-              : "Apply Filter"}
+              : "Apply Filter"} */}{" "}
+            Apply filters
             <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
           </button>
         </PopoverTrigger>

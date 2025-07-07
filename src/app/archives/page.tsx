@@ -1,7 +1,45 @@
-import MsgCardGrid from "@/components/sections/msgCardGrid";
+"use client";
+import { fetchMessages } from "@/backendServices";
+import MsgCardGrid, { MessageType } from "@/components/sections/msgCardGrid";
+import MsgCardGridSkeleton from "@/components/sections/msgCardGridSkeleton";
 import SearchSection from "@/components/sections/searchSection";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import debounce from "lodash.debounce";
 
 export default function ArchivesPage() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedColors, setSelectedColors] = useState<string[]>([]);
+  const getAllMessages = async (search: string, colors: string[]) => {
+    try {
+      const result = await fetchMessages({
+        search,
+        color: colors.join(","),
+      });
+      if (result.success) {
+        console.log("Messages fetched successfully:", result.data);
+        setMessages(result?.data?.messages);
+      } else {
+        toast.error("Failed to fetch messages. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+      toast.error("An error occurred while fetching messages.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const debounced = debounce(() => {
+      getAllMessages(searchQuery, selectedColors);
+    }, 400);
+
+    debounced();
+    return () => debounced.cancel();
+  }, [searchQuery, selectedColors]);
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5 ">
@@ -16,9 +54,17 @@ export default function ArchivesPage() {
         </p>
       </div>
       <div className="mx-auto w-full max-w-[800px] pb-8 sm:pb-16  px-5">
-        <SearchSection />
+        <SearchSection
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          selectedColors={selectedColors}
+          setSelectedColors={setSelectedColors}
+        />
       </div>
-      <MsgCardGrid />
+      {!loading && messages.length === 0 && (
+        <div className="text-center text-gray-500 mt-8">No messages found.</div>
+      )}
+      {loading ? <MsgCardGridSkeleton /> : <MsgCardGrid messages={messages} />}
     </div>
   );
 }
