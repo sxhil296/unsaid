@@ -51,10 +51,9 @@ export default function SearchSection({
             type="button"
             className="w-[200px] justify-between rounded-none flex border p-2 items-center text-nowrap"
           >
-            {/* {selected.length > 0
-              ? `${selected.length} selected`
-              : "Apply Filter"} */}{" "}
-            Apply filters
+            {selectedColors.length > 0
+              ? `${selectedColors.length} selected`
+              : "Apply Filter"}
             <ChevronDown className="ml-2 h-4 w-4 opacity-50" />
           </button>
         </PopoverTrigger>
