@@ -46,7 +46,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <section className="relative flex min-h-[40dvh] flex-col overflow-hidden pt-32 pb-24  sm:py-12 items-center  px-5 md:pt-[200px] md:pb-[100px] ">
         <div className="mx-auto w-full max-w-[800px]">
-          <h1 className="leading-normal text-center text-3xl md:text-6xl font-heading text-foreground">
+          <h1 className="leading-normal text-center text-3xl md:text-6xl font-heading text-foreground mb-12">
             A Place for the Messages <br />
             <Typewriter
               words={[

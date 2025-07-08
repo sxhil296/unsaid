@@ -37,7 +37,7 @@ export default function SearchSection({
     setTempSelected([]);
   };
   return (
-    <div className="bg-secondary-background border border-black my-10 py-2 px-4 h-[56px] flex justify-start items-center ">
+    <div className="bg-secondary-background border border-black  py-2 px-4 h-[56px] flex justify-start items-center ">
       <input
         type="text"
         placeholder="Search by name..."

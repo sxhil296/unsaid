@@ -17,7 +17,7 @@ export default function MsgCard({
   createdAt,
 }: MsgCardProps) {
   return (
-    <div className="w-full max-w-[280px] border-3 border-black p-4 bg-secondary-background cursor-pointer shadow-md">
+    <div className="w-full  border-3 border-black p-4 bg-secondary-background cursor-pointer shadow-md">
       <div className="w-full flex justify-between items-center text-base font-semibold text-black pb-1">
         <div className="flex justify-start items-center gap-2">
           <p>To:</p>

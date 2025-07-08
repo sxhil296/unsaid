@@ -9,6 +9,7 @@ import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { submitMessage } from "@/backendServices";
 import { formatRemainingTime } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 const initialFormState = {
   to: "",
@@ -25,6 +26,7 @@ export default function SubmitSection() {
   const [checked, setChecked] = useState(false);
   const [cooldown, setCooldown] = useState(false);
   const [remainingHours, setRemainingHours] = useState<number | null>(null);
+  const router = useRouter()
   function getContrastYIQ(hex: string): string {
     hex = hex.replace("#", "");
     const r = parseInt(hex.slice(0, 2), 16);
@@ -98,7 +100,9 @@ export default function SubmitSection() {
         setFormState(initialFormState);
         setMsgBg("#000");
         setMsgColor("#fff");
+        setChecked(false);
         localStorage.setItem("lastSubmittedTime", Date.now().toString());
+        router.push("/");
       } else {
         toast.error(result.error);
       }
