@@ -21,13 +21,13 @@ export default function HomePage() {
         color: colors.join(","),
       });
       if (result.success) {
-        console.log("Messages fetched successfully:", result.data);
+        // console.log("Messages fetched successfully:", result.data);
         setMessages(result?.data?.messages);
       } else {
         toast.error("Failed to fetch messages. Please try again later.");
       }
     } catch (error) {
-      console.error("Error fetching messages:", error);
+      // console.error("Error fetching messages:", error);
       toast.error("An error occurred while fetching messages.");
     } finally {
       setLoading(false);

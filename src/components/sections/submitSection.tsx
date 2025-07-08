@@ -107,7 +107,7 @@ export default function SubmitSection() {
         toast.error(result.error);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      // console.error("Error submitting form:", error);
       toast.error("Failed to submit the message. Please try again.");
     } finally {
       setSubmitting(false);
