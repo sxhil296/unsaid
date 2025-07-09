@@ -1,7 +1,10 @@
+'use client';
 import { formatDate } from "@/lib/utils";
 import { Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface MsgCardProps {
+  _id:string;
   msgBg: string;
   msgColor: string;
   to: string;
@@ -10,14 +13,18 @@ interface MsgCardProps {
 }
 
 export default function MsgCard({
+  _id,
   msgBg,
   msgColor,
   to,
   msg,
   createdAt,
 }: MsgCardProps) {
+  const router = useRouter();
   return (
-    <div className="w-full  border-3 border-black p-4 bg-secondary-background cursor-pointer shadow-md">
+    <div className="w-full  border-3 border-black p-4 bg-secondary-background cursor-pointer shadow-md"
+    onClick={()=> router.push(`/messages/${_id}`)}
+    >
       <div className="w-full flex justify-between items-center text-base font-semibold text-black pb-1">
         <div className="flex justify-start items-center gap-2">
           <p>To:</p>
@@ -26,10 +33,10 @@ export default function MsgCard({
         <Mail />
       </div>
       <div
-        className={`w-full p-2 min-h-[200px] max-h-[200px] overflow-hidden`}
+        className="w-full p-2 min-h-[200px] max-h-[200px] overflow-hidden"
         style={{ backgroundColor: msgBg, color: msgColor }}
       >
-        {msg}
+        {msg.length > 200 ? msg.slice(0, 200) + "..." : msg}
       </div>
       <div className="text-xs text-center w-full pt-2">
         {formatDate(createdAt)}

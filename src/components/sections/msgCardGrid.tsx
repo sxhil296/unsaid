@@ -1,6 +1,7 @@
 import MsgCard from "./msgCard";
 
 export type MessageType = {
+  _id: string;
   to: string;
   message: string;
   bgColor: string;
@@ -25,6 +26,7 @@ export default function MsgCardGrid({ messages }: MsgCardGridProps) {
         {orderedMessages.map((message, index) => (
           <MsgCard
             key={index}
+            _id={message._id}
             createdAt={message.createdAt}
             msgBg={message.bgColor}
             msgColor={message.textColor}

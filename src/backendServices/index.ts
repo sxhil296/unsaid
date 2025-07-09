@@ -56,3 +56,16 @@ export async function fetchMessages(params: FetchMessagesParams = {}) {
     return { success: false, error: errorMessage };
   }
 }
+
+export async function fetchMessageById(id: string) {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/messages/${id}`
+    );
+    return { success: true, data: response.data };
+  } catch (error: any) {
+    const errorMessage =
+      error?.response?.data?.error || "Server error. Please try again.";
+    return { success: false, error: errorMessage };
+  }
+}
