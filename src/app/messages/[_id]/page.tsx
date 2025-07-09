@@ -36,13 +36,11 @@ export default function MessagePage() {
   useEffect(() => {
     getMessageById(messageId);
   }, []);
-  console.log("Message:", message);
+  // console.log("Message:", message);
   return (
     <div className="min-h-[calc(100vh-115px)]">
-      <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5 ">
-        <Link href="/" className="text-primary underline hover:text-primary/80">
-          ← Back to Home
-        </Link>
+      <div className="mx-auto w-full max-w-[800px] pt-32  pb-8 sm:pb-16 px-5 flex justify-start items-center gap-6">
+      
         <h1 className="text-3xl md:text-6xl font-heading text-foreground text-center">
           To : <span className="text-main">{message?.to || ""}</span>
         </h1>
@@ -56,8 +54,8 @@ export default function MessagePage() {
           <p>Loading...</p>
         </div>
       ) : (
-        <div>
-          <div className="w-full  max-w-[600px]  mx-auto px-5 ">
+        
+          <div className="w-full sm:max-w-[800px]    mx-auto px-5 ">
             <div className="w-full  border-3 border-black p-4 bg-secondary-background cursor-pointer shadow-md">
               <div className="w-full flex justify-between items-center text-base font-semibold text-black pb-1">
                 <div className="flex justify-start items-center gap-2">
@@ -78,7 +76,7 @@ export default function MessagePage() {
               </div>
             </div>
           </div>
-        </div>
+        
       )}
     </div>
   );
