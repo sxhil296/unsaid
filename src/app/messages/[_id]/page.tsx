@@ -66,7 +66,7 @@ export default function MessagePage() {
                 <Mail />
               </div>
               <div
-                className="w-full p-2 min-h-[200px] max-h-[200px] overflow-hidden"
+                className="w-full p-2 min-h-[200px] overflow-hidden"
                 style={{
                   backgroundColor: message?.bgColor,
                   color: message?.textColor,
