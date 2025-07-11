@@ -77,7 +77,7 @@ export default function SubmitSection() {
       return;
     }
     if (formState.message.length > 700) {
-      toast.info("Message cannot exceed 500 characters.");
+      toast.info("Message cannot exceed 700 characters.");
       return;
     }
 
