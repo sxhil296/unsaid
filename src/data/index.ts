@@ -3,7 +3,7 @@ export const colors = [
   "#FFFFFF",
   "#C0C0C0",
   "#808080",
-  "#000000",
+  "#000",
   // Row 2
   "#FF8000",
   "#FFFF00",
