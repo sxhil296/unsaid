@@ -17,6 +17,8 @@ export default function HomePage() {
   const getAllMessages = async (search: string, colors: string[]) => {
     try {
       const result = await fetchMessages({
+        page: 1,
+        limit: 300,
         search,
         color: colors.join(","),
       });

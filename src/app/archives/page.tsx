@@ -15,6 +15,8 @@ export default function ArchivesPage() {
   const getAllMessages = async (search: string, colors: string[]) => {
     try {
       const result = await fetchMessages({
+        page: 1,
+        limit: 300,
         search,
         color: colors.join(","),
       });
@@ -40,6 +42,7 @@ export default function ArchivesPage() {
     debounced();
     return () => debounced.cancel();
   }, [searchQuery, selectedColors]);
+
   return (
     <div className="min-h-screen">
       <div className="mx-auto w-full max-w-[800px] pt-32 pb-8 sm:pb-16 px-5 ">
