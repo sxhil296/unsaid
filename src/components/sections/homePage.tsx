@@ -1,6 +1,5 @@
 "use client";
 import { fetchMessages } from "@/backendServices";
-// import Hero from "./hero";
 import MsgCardGrid, { MessageType } from "./msgCardGrid";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
@@ -55,7 +54,6 @@ export default function HomePage() {
                 "That Never Made It.",
                 "Left Unspoken.",
                 "You Still Think About.",
-                "That Never Reached Them.",
               ]}
               loop={5}
               cursor

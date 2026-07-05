@@ -61,17 +61,17 @@ export default function SearchSection({
         </PopoverTrigger>
         <PopoverContent className="w-[200px] max-w-[200px] bg-secondary-background rounded-none mr-[20px] sm:mr-0">
           <div className="mb-2 max-h-[200px] overflow-y-auto">
-            <p className="text-sm font-medium px-2 py-1">Colors</p>
+            <p className="text-sm font-medium px-2 py-1">Filter by Colors</p>
             {colors.map((color, index) => (
               <button
                 key={index}
                 onClick={() => toggleColor(color)}
-                className={`flex w-full items-center px-2 py-1 gap-2 hover:bg-accent ${
+                className={`flex w-full items-center px-2 py-1 cursor-pointer gap-2 hover:bg-background ${
                   tempSelected.includes(color) ? "bg-accent" : ""
                 }`}
               >
                 <span
-                  className="w-4 h-4 rounded-full"
+                  className="w-4 h-4 rounded-full border"
                   style={{ backgroundColor: color }}
                 />
                 <span className="flex-1 text-left text-sm">{color}</span>
