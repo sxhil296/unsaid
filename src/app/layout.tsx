@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
@@ -61,6 +61,10 @@ export const metadata: Metadata = {
     images: ["https://unsaidproject.vercel.app/og-image.png"], // same as OG
     creator: "@unsaidproject", // replace with your Twitter handle
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#ff7a05",
 };
 
 export default function RootLayout({
